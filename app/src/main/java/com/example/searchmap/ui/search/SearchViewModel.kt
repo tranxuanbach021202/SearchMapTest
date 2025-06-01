@@ -45,8 +45,7 @@ class SearchViewModel @Inject constructor(
         searchJob = viewModelScope.launch {
             delay(debounceTime) // Debounce delay
             showLoading(true)
-            viewModelScope.launch {
-                try {
+            try {
                     Log.d("SearchViewModel", "Search query: $query")
                     val results = placeRepository.searchPlaces(query)
                     Log.d("SearchViewModel", "Search results: $results")
@@ -55,7 +54,6 @@ class SearchViewModel @Inject constructor(
                     handleException(e)
                 } finally {
                     showLoading(false)
-                }
             }
         }
 
